@@ -5,7 +5,7 @@ _islinux=false
 [[ "$(uname -s)" =~ Linux|GNU|GNU/* ]] && _islinux=true
 
 _isarch=false
-[[ -f /etc/arch-release ]] && _isarch=true
+[[ -f /etc/os-release ]] && _isarch=true
 
 _isxrunning=false
 [[ -n "$DISPLAY" ]] && _isxrunning=true
@@ -36,7 +36,7 @@ _isroot=false
     }
 
     if [[ $PS1 && -f /usr/share/git/git-prompt.sh ]]; then
-      source /usr/share/git/completion/git-completion.bash
+      source /usr/share/bash-completion/bash_completion
       source /usr/share/git/git-prompt.sh
 
       export GIT_PS1_SHOWDIRTYSTATE=1
@@ -60,8 +60,8 @@ _isroot=false
   shopt -s no_empty_cmd_completion # No empty completion
   ## COMPLETION #{{{
     complete -cf sudo
-    if [[ -f /etc/bash_completion ]]; then
-      . /etc/bash_completion
+    if [[ -f /etc/profile.d/bash_completion.sh ]]; then
+      . /etc/profile.d/bash_completion.sh
     fi
   #}}}
 #}}}
@@ -128,49 +128,49 @@ _isroot=false
     alias egrep='egrep --color=auto'
   #}}}
   # MODIFIED COMMANDS {{{
-    alias ..='cd ..'
-    alias df='df -h'
-    alias diff='colordiff'              # requires colordiff package
-    alias du='du -c -h'
-    alias free='free -m'                # show sizes in MB
-    alias grep='grep --color=auto'
-    alias grep='grep --color=tty -d skip'
-    alias mkdir='mkdir -p -v'
-    alias more='less'
-    alias nano='nano -w'
-    alias ping='ping -c 5'
+    	alias ..="cd .."
+    	alias df="df -h"
+    	alias diff="colordiff"              # requires colordiff package
+    	alias du="du -c -h"
+    	alias free="free -m"                # show sizes in MB
+    	alias grep="grep --color=auto"
+    	alias grep="grep --color=tty -d skip"
+    	alias mkdir="mkdir -p -v"
+    	alias more="less"
+    	alias nano="nano -w"
+    	alias ping="ping -c 5"
+		  alias git-clone="git clone"
+		  alias suprimer="sudo rm -r"
   #}}}
   # PRIVILEGED ACCESS {{{
-    if ! $_isroot; then
-      alias sudo='sudo '
-      alias scat='sudo cat'
-      alias svim='sudo vim'
-      alias root='sudo su'
-      alias reboot='sudo reboot'
-      alias halt='sudo halt'
-    fi
+		alias sudo="sudo "
+		alias scat="sudo cat"
+		alias svim="sudo vim"
+		alias snano="sudo nano"
+		alias spluma="sudo pluma"
+		alias scaja="sudo caja"
+    alias root="sudo su"
+    alias reboot="sudo reboot"
+    alias halt="sudo halt"
   #}}}
-  # PACMAN ALIASES {{{
-    # we're on ARCH
-    if $_isarch; then
-      # we're not root
-      if ! $_isroot; then
-        alias pacman='sudo pacman'
-      fi
-      alias pacupg='pacman -Syu'            # Synchronize with repositories and then upgrade packages that are out of date on the local system.
-      alias pacupd='pacman -Sy'             # Refresh of all package lists after updating /etc/pacman.d/mirrorlist
-      alias pacin='pacman -S'               # Install specific package(s) from the repositories
-      alias pacinu='pacman -U'              # Install specific local package(s)
-      alias pacre='pacman -R'               # Remove the specified package(s), retaining its configuration(s) and required dependencies
-      alias pacun='pacman -Rcsn'            # Remove the specified package(s), its configuration(s) and unneeded dependencies
-      alias pacinfo='pacman -Si'            # Display information about a given package in the repositories
-      alias pacse='pacman -Ss'              # Search for package(s) in the repositories
-
-      alias pacupa='pacman -Sy && sudo abs' # Update and refresh the local package and ABS databases against repositories
-      alias pacind='pacman -S --asdeps'     # Install given package(s) as dependencies of another package
-      alias pacclean="pacman -Sc"           # Delete all not currently installed package files
-      alias pacmake="makepkg -fcsi"         # Make package from PKGBUILD file in current directory
-    fi
+  # XBPS ALIASES {{{
+	  alias xbps-install="sudo xbps-install"
+    alias xupgrade="xbps-install -Syu"    # Synchronize with repositories and then upgrade packages that are out of date on the local system.
+    alias xupdate="xbps-install -Sy"      # Refresh of all package lists after updating /etc/xbps/xbps.conf
+    alias xinstall="xbps-install -y"      # Install specific package(s) from the repositories and assume yes to all questions
+    alias xinstaller="I do not know"			# Install specific local package(s)
+		alias xbps-remove="sudo xbps-remove"
+    alias xremove="xbps-remove -R"				# Remove the specified package(s), retaining its configuration(s) and required dependencies
+    alias xautoremove="xbps-remove -RyvF"       # Remove the specified package(s), its configuration(s) and unneeded dependencies
+    alias xinfo="xbps-query --show"             # Display information about a given package in the repositories
+    alias xsearch="xbps-query -Rs"				# Search for package(s) in the repositories
+		alias xbps-reconfigure="sudo xbps-reconfigure"
+		alias config="xbps-reconfigure -f"			# Force reconfiguration package
+		alias config-all="xbps-reconfigure -af"		# Force reconfiguration all packages
+  #}}}
+  # XBPS SRC {{{
+	  	alias void-packages="cd $HOME/void-packages"
+		  alias xbps-src="bash ./xbps-src -f pkg"
   #}}}
   # MULTIMEDIA {{{
     if which get_flash_videos &>/dev/null; then
@@ -601,27 +601,5 @@ _isroot=false
   #}}}
   # ENTER AND LIST DIRECTORY{{{
     function cd() { builtin cd -- "$@" && { [ "$PS1" = "" ] || ls -hrt --color; }; }
-  #}}}
-  # SYSTEMD SUPPORT {{{
-    if which systemctl &>/dev/null; then
-      start() {
-        sudo systemctl start $1.service
-      }
-      restart() {
-        sudo systemctl restart $1.service
-      }
-      stop() {
-        sudo systemctl stop $1.service
-      }
-      enable() {
-        sudo systemctl enable $1.service
-      }
-      status() {
-        sudo systemctl status $1.service
-      }
-      disable() {
-        sudo systemctl disable $1.service
-      }
-    fi
   #}}}
 #}}}
