@@ -128,49 +128,49 @@ _isroot=false
     alias egrep='egrep --color=auto'
   #}}}
   # MODIFIED COMMANDS {{{
-    	alias ..="cd .."
-    	alias df="df -h"
-    	alias diff="colordiff"              # requires colordiff package
-    	alias du="du -c -h"
-    	alias free="free -m"                # show sizes in MB
-    	alias grep="grep --color=auto"
-    	alias grep="grep --color=tty -d skip"
-    	alias mkdir="mkdir -p -v"
-    	alias more="less"
-    	alias nano="nano -w"
-    	alias ping="ping -c 5"
-		  alias git-clone="git clone"
-		  alias suprimer="sudo rm -r"
+    alias ..="cd .."
+    alias df="df -h"
+    alias diff="colordiff"              # requires colordiff package
+    alias du="du -c -h"
+    alias free="free -m"                # show sizes in MB
+    alias grep="grep --color=auto"
+    alias grep="grep --color=tty -d skip"
+    alias mkdir="mkdir -p -v"
+    alias more="less"
+    alias nano="nano -w"
+    alias ping="ping -c 5"
+    alias git-clone="git clone"
+    alias suprimer="sudo rm -r"
   #}}}
   # PRIVILEGED ACCESS {{{
-		alias sudo="sudo "
-		alias scat="sudo cat"
-		alias svim="sudo vim"
-		alias snano="sudo nano"
-		alias spluma="sudo pluma"
-		alias scaja="sudo caja"
+    alias sudo="sudo "
+    alias scat="sudo cat"
+    alias svim="sudo vim"
+    alias snano="sudo nano"
+    alias spluma="sudo pluma"
+    alias scaja="sudo caja"
     alias root="sudo su"
     alias reboot="sudo reboot"
     alias halt="sudo halt"
   #}}}
   # XBPS ALIASES {{{
-	  alias xbps-install="sudo xbps-install"
-    alias xupgrade="xbps-install -Syu"    # Synchronize with repositories and then upgrade packages that are out of date on the local system.
-    alias xupdate="xbps-install -Sy"      # Refresh of all package lists after updating /etc/xbps/xbps.conf
-    alias xinstall="xbps-install -y"      # Install specific package(s) from the repositories and assume yes to all questions
-    alias xinstaller="I do not know"			# Install specific local package(s)
-		alias xbps-remove="sudo xbps-remove"
-    alias xremove="xbps-remove -R"				# Remove the specified package(s), retaining its configuration(s) and required dependencies
+    alias xbps-install="sudo xbps-install"
+    alias xupgrade="xbps-install -Syu"    	# Synchronize with repositories and then upgrade packages that are out of date on the local system.
+    alias xupdate="xbps-install -Sy"      	# Refresh of all package lists after updating /etc/xbps/xbps.conf
+    alias xinstall="xbps-install -y"      	# Install specific package(s) from the repositories and assume yes to all questions
+    alias xinstaller="I do not know"		# Install specific local package(s)
+    alias xbps-remove="sudo xbps-remove"
+    alias xremove="xbps-remove -R"		# Remove the specified package(s), retaining its configuration(s) and required dependencies
     alias xautoremove="xbps-remove -RyvF"       # Remove the specified package(s), its configuration(s) and unneeded dependencies
     alias xinfo="xbps-query --show"             # Display information about a given package in the repositories
-    alias xsearch="xbps-query -Rs"				# Search for package(s) in the repositories
-		alias xbps-reconfigure="sudo xbps-reconfigure"
-		alias config="xbps-reconfigure -f"			# Force reconfiguration package
-		alias config-all="xbps-reconfigure -af"		# Force reconfiguration all packages
+    alias xsearch="xbps-query -Rs"		# Search for package(s) in the repositories
+    alias xbps-reconfigure="sudo xbps-reconfigure"
+    alias config="xbps-reconfigure -f"		# Force reconfiguration package
+    alias config-all="xbps-reconfigure -af"	# Force reconfiguration all packages
   #}}}
   # XBPS SRC {{{
-	  	alias void-packages="cd $HOME/void-packages"
-		  alias xbps-src="bash ./xbps-src -f pkg"
+  alias void-packages="cd $HOME/void-packages"
+  alias xbps-src="bash ./xbps-src -f pkg"
   #}}}
   # MULTIMEDIA {{{
     if which get_flash_videos &>/dev/null; then
