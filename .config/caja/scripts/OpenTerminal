@@ -27,6 +27,6 @@ if ($_ and m#^file:///#) {
 if ($_ == "x-caja-desktop:///") {
   $_ = $ENV{'HOME'};
   $_ = $_.'/Desktop';
-  exec "caja-terminal --working-directory='$_'";
+  exec "mate-terminal --working-directory='$_'";
 }
 
