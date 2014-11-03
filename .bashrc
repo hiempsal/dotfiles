@@ -165,8 +165,8 @@ _isroot=false
     alias xinfo="xbps-query --show"             # Display information about a given package in the repositories
     alias xsearch="xbps-query -Rs"		# Search for package(s) in the repositories
     alias xbps-reconfigure="sudo xbps-reconfigure"
-    alias config="xbps-reconfigure -f"		# Force reconfiguration package
-    alias config-all="xbps-reconfigure -af"	# Force reconfiguration all packages
+    alias xconfig="xbps-reconfigure -f"		# Force reconfiguration package
+    alias xconfig-all="xbps-reconfigure -af"	# Force reconfiguration all packages
   #}}}
   # XBPS SRC {{{
   alias void-packages="cd $HOME/void-packages"
