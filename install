@@ -55,7 +55,7 @@ cd
 cd
 xbps-install -y udisks
 cd dotfiles
-cp 50-udisks.rules /etc/polkit-1/rules.d/50-udisks.rules
+sudo cp 50-udisks.rules /etc/polkit-1/rules.d/50-udisks.rules
 cd
 
 ### Install Most Applications
