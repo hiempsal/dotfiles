@@ -1,0 +1,65 @@
+### Install Xorg and Nvidia
+
+xbps-install -Syu
+xbps-install -y void-repo-nonfree
+xbps-install -y xorg-minimal xorg-apps xorg-fonts xf86-input-synaptics xf86-input-joystick xf86-video-modesetting nvidia-stable
+
+### Install Desktop and Disable Manager
+
+xbps-install -y mate mate-extra upower0 ConsoleKit xdg-user-dirs-gtk network-manager-applet alsa-utils dconf-editor qt-qtconfig lightdm-gtk3-greeter
+
+### Add User
+
+xbps-install -y sudo nano git
+useradd -m -g users -G lp,scanner,audio,video,optical,storage,root,xbuilder,network,wheel -s /bin/bash realname
+passwd realname
+usermod -s /bin/bash root
+
+### Enable Services
+
+ln -s /etc/sv/NetworkManager /var/service
+ln -s /etc/sv/dbus /var/service
+ln -s /etc/sv/lightdm /var/service
+
+reboot
+
+### Configure bash
+
+cd
+sudo xbps-install -y bash-completion colord colord-gtk colordiff
+git clone https://github.com/hiempsal/dotfiles.git
+cd dotfiles
+cp .bashrc $HOME/
+cp .dircolors $HOME/
+cp .dircolors_256 $HOME/
+cd
+
+
+### Configure fonts
+
+cd
+xbps-install -y fonts-croscore-ttf freefont-ttf google-fonts-ttf-git liberation-fonts-ttf
+cd dotfiles
+cp -a /fontconfig $HOME/.config
+sudo cp -a fontconfig /root/.fontconfig
+sudo mkdir /root/.cache/fontconfig
+fc-cache -f -v
+su
+cd
+fc-cache -f -v
+exit
+cd
+
+### Mount Partitions
+
+cd
+xbps-install -y udisks
+cd dotfiles
+cp 50-udisks.rules /etc/polkit-1/rules.d/50-udisks.rules
+cd
+
+### Install Most Applications
+
+xbps-install -y libreoffice-bin-i18n-fr firefox-i18n-fr gst-plugins-good gst-plugins-bad gst-plugins-ugly gst-plugins-good1 gst-plugins-bad1 gst-plugins-ugly1 vlc liferea transmission-gtk gnome-disk-utility audacious-plugins hexchat thunderbird-i18n-fr brasero p7zip unzip zip minizip oracle-jdk chromium-pepper-flash cups system-config-printer unrar
+
+sudo ln -s /etc/sv/cupsd/ /var/service
