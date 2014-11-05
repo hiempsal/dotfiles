@@ -13,6 +13,13 @@ xbps-install -y mate mate-extra upower0 ConsoleKit xdg-user-dirs-gtk network-man
 xbps-install -y sudo nano git
 useradd -m -g users -G lp,scanner,audio,video,optical,storage,root,xbuilder,network,wheel -s /bin/bash realname
 passwd realname
+
+nano /etc/sudoers
+
+add this :
+root ALL=(ALL) ALL
+realname ALL=(ALL) ALL
+
 usermod -s /bin/bash root
 
 ### Enable Services
