@@ -40,7 +40,7 @@ cd
 cd
 xbps-install -y fonts-croscore-ttf freefont-ttf google-fonts-ttf-git liberation-fonts-ttf
 cd dotfiles
-cp -a /fontconfig $HOME/.config
+cp -a fontconfig $HOME/.config
 sudo cp -a fontconfig /root/.fontconfig
 sudo mkdir /root/.cache/fontconfig
 fc-cache -f -v
