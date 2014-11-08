@@ -55,9 +55,9 @@ fc-cache -f -v
 exit
 cd
 mkdir {.icons,.themes,.fonts}
-sudo ln -s icons/ /root/.icons
-sudo ln -s themes/ /root/.themes
-sudo ln -s fonts/ /root/.fonts
+sudo ln -s .icons/ /root/.icons
+sudo ln -s .themes/ /root/.themes
+sudo ln -s .fonts/ /root/.fonts
 
 ### Mount Partitions
 
