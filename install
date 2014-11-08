@@ -17,10 +17,7 @@ passwd realname
 nano /etc/sudoers
 
 add this :
-root ALL=(ALL) ALL
 realname ALL=(ALL) ALL
-
-usermod -s /bin/bash root
 
 ### Enable Services
 
@@ -33,6 +30,7 @@ reboot
 ### Configure bash
 
 cd
+usermod -s /bin/bash root
 sudo xbps-install -y bash-completion colord colord-gtk colordiff
 git clone https://github.com/hiempsal/dotfiles.git
 cd dotfiles
